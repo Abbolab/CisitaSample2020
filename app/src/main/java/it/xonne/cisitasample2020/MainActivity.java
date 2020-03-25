@@ -2,6 +2,7 @@ package it.xonne.cisitasample2020;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,9 +41,20 @@ public class MainActivity extends AppCompatActivity {
                 count++;
 
                 myTextView.setText("Hai premuto " + String.valueOf(count) + " volte");
+
+                //cambio activity
+                GoToSecondActivity();
             }
         });
 
+
+    }
+
+    // Istanzio un Intent per passare alla Second Activity
+    private void GoToSecondActivity() {
+
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
 
     }
 

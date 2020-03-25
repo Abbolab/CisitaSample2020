@@ -6,6 +6,8 @@
     android:orientation="horizontal"
     android:background="@color/backgroundColor">
 
+
+
     <!-- CONTENUTO DEL NOSTRO LAYOUT
     wrap_content = dimensione del contenuto
     -->
