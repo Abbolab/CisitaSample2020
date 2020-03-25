@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BEF4DC"
+    android:background="#FBCB79"
     android:padding="20dp">
 
     <TextView
@@ -11,16 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Home "
+        android:text="List Users"
+        android:textColor="#000000"
         android:textSize="30sp"
-        android:textStyle="bold"
-        tools:text="Home" />
-
-    <Button
-        android:id="@+id/buttonShowUsers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Show User List" />
-
+        android:textStyle="bold" />
 </RelativeLayout>

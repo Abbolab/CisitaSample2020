@@ -28,30 +28,6 @@ public class MainActivity extends AppCompatActivity {
         // creo Home Fragment ad avvio
         createHomeFragment();
 
-        // inflate delle view dal layout
-        Button buttonClickMe = (Button)findViewById(R.id.buttonClickMe);
-        final TextView myTextView = (TextView)findViewById(R.id.textViewHelloWorld);
-
-
-        // intercetto il click sul pulsante
-        buttonClickMe.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                Log.d("CISITA", "onClick event called!");
-
-                // incremento il mio count
-                count++;
-
-                myTextView.setText("Hai premuto " + String.valueOf(count) + " volte");
-
-                //cambio activity
-                GoToSecondActivity();
-            }
-        });
-
-
     }
 
     // Istanzio un Intent per passare alla Second Activity
