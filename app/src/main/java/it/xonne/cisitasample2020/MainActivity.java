@@ -1,6 +1,7 @@
 package it.xonne.cisitasample2020;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import it.xonne.cisitasample2020.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,10 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("CISITA", "onCreate App Cisita!!");
 
-        //prova GIT
-
         // definire quale lauyput deve mostrare la nosra schermata
         setContentView(R.layout.activity_main);
+
+        // creo Home Fragment ad avvio
+        createHomeFragment();
 
         // inflate delle view dal layout
         Button buttonClickMe = (Button)findViewById(R.id.buttonClickMe);
@@ -55,6 +59,23 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
+
+    }
+
+    // creo e instanzio Home Fragment ad avvio applicazione
+    private void createHomeFragment() {
+
+        // creo una instanza del Home Fragment
+        HomeFragment homeFragment = new HomeFragment();
+
+        // inizio una transizione per aggiungere il fragment tramite il Fragment Manager ottenuto dall'activity
+        FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
+
+        // aggiungo al FrameLyoaut contenuto in "activity_main.layout" l'instanza di Fragment e associo un TAG
+        transaction.add(R.id.FrameLayoutContainer, homeFragment, "HOME_FRAGMENT");
+
+        // finalizzo operazione di transizione
+        transaction.commit();
 
     }
 

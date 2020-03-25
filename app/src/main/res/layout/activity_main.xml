@@ -7,29 +7,11 @@
     android:background="@color/backgroundColor">
 
 
-
-    <!-- CONTENUTO DEL NOSTRO LAYOUT
-    wrap_content = dimensione del contenuto
-    -->
-
-    <TextView
-        android:id="@+id/textViewHelloWorld"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_hello_world"
-        android:layout_below="@+id/buttonClickMe"
-        android:layout_alignEnd="@+id/buttonClickMe"
-        android:layout_marginTop="20dp">
-    </TextView>
-
-    <Button
-        android:id="@+id/buttonClickMe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_text_click_me"
-        android:layout_centerInParent="true"
-        android:textStyle="bold">
-    </Button>
+    <!-- Dichiriamo un frame lyyout per mostrare i vari fragament -->
+    <FrameLayout
+        android:id="@+id/FrameLayoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </RelativeLayout>
