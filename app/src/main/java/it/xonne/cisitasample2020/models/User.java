@@ -10,5 +10,14 @@ public class User extends Object {
     public Date date;
     public boolean visibile = true;
 
+    public User() {
+
+    }
+
+
+    public String getFullName() {
+        return name + " " + surname;
+    }
+
 
 }

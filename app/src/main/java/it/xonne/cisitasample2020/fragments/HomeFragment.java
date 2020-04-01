@@ -29,6 +29,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        view.findViewById(R.id.buttonShowUsers).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         // referenzio Button per gestione logica pulsante
         Button buttonShowList = view.findViewById(R.id.buttonShowUsers);
         //implemento onClick pulsante
