@@ -1,6 +1,7 @@
 package it.xonne.cisitasample2020.fragments;
 
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,20 @@ import androidx.fragment.app.Fragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 import it.xonne.cisitasample2020.R;
+import it.xonne.cisitasample2020.models.User;
 
 public class ListUsersFragment extends Fragment {
 
@@ -47,15 +58,55 @@ public class ListUsersFragment extends Fragment {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
+                // dataset
+                ArrayList<User> listUsers = new ArrayList();
+
                 try {
 
+                    //convertiamo l'array di byte in stringa tramite charset UTF-8
                     String responseString = new String(responseBody, "UTF-8");
-                    Log.d("CISITA", "onSuccess chiamata avvenuta con successo: " + responseString);
+                    //Log.d("CISITA", "onSuccess chiamata avvenuta con successo: " + responseString);
+
+                    // instanziamo il nostro JSON object a partire dalla stringa ottenuta dal server
+                    JSONObject jsonObject = new JSONObject(responseString);
+                    // ottengo il json array dal json obhect tramite la chiave "users"
+                    JSONArray jsonArray = jsonObject.getJSONArray("users");
+
+                    // ciclo json array per serializzare il contenuto
+                    for(int index = 0; index < jsonArray.length(); index++) {
+                        //ottengo json object che rappresent User tramite posizione del json array
+                        JSONObject userJsonObject = jsonArray.getJSONObject(index);
+
+                        //istanzio un oggetto Java User
+                        User currentUser = new User();
+                        //inizio serializzazione mappatura da JSON a oggetto JAVA
+                        currentUser.name = userJsonObject.getString("name");
+                        currentUser.surname = userJsonObject.getString("surname");
+                        currentUser.visibile = userJsonObject.getBoolean("visibile");
+                        currentUser.age = userJsonObject.getInt("age");
+
+                        // formatto data da stringa a oggeto
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm HH:mm");
+                        Date dateRegistration = dateFormat.parse(userJsonObject.getString("dateRegistration"));
+                        // assegno date registration letto da json come stringa e convertito in date
+                        currentUser.date = dateRegistration;
+
+                        //Log.d("CISITA", "User index: " + index + " toString: " + currentUser.getFullName());
+
+                        //aggiungo oggetto user a dataset
+                        listUsers.add(currentUser);
+                    }
 
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
 
+
+                Log.d("CISITA", "List Users count: " + listUsers.size());
 
             }
 
